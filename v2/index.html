@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Medallas Olímpicas</title>
+    <!-- Enlace a Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="bg-dark text-white text-center py-3">
+        <h1>Registro de Medallas Olímpicas</h1>
+    </header>
+    
+    <main class="container my-4">
+        <section>
+            <h2 class="mb-4">Registrar Medallas</h2>
+            <form id="medal-form">
+                <div class="form-group">
+                    <label for="country">País</label>
+                    <input type="text" class="form-control" id="country" name="country" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="gold">Oro</label>
+                    <input type="number" class="form-control" id="gold" name="gold" min="0" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="silver">Plata</label>
+                    <input type="number" class="form-control" id="silver" name="silver" min="0" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="bronze">Bronce</label>
+                    <input type="number" class="form-control" id="bronze" name="bronze" min="0" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Registrar</button>
+            </form>
+        </section>
+        
+        <section class="mt-5">
+            <h2 class="mb-4">Medallas Registradas</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>País</th>
+                        <th>Oro</th>
+                        <th>Plata</th>
+                        <th>Bronce</th>
+                    </tr>
+                </thead>
+                <tbody id="medal-table-body">
+                    <!-- Las filas se agregarán aquí dinámicamente -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    
+    <!-- Enlace a Bootstrap JS y dependencias -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <!-- Script JavaScript -->
+    <script>
+        document.getElementById('medal-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const country = document.getElementById('country').value;
+            const gold = document.getElementById('gold').value;
+            const silver = document.getElementById('silver').value;
+            const bronze = document.getElementById('bronze').value;
+            
+            const tableBody = document.getElementById('medal-table-body');
+            
+            const row = document.createElement('tr');
+            
+            row.innerHTML = `
+                <td>${country}</td>
+                <td>${gold}</td>
+                <td>${silver}</td>
+                <td>${bronze}</td>
+            `;
+            
+            tableBody.appendChild(row);
+            
+            // Limpiar el formulario
+            document.getElementById('medal-form').reset();
+        });
+    </script>
+</body>
+</html>
